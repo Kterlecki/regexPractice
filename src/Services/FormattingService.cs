@@ -1,11 +1,12 @@
-﻿using System;
+﻿using System.Text.RegularExpressions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SyntaxFormatter.Services
+namespace regexPractice.Services
 {
     public class FormattingService
     {
@@ -21,15 +22,17 @@ namespace SyntaxFormatter.Services
         }
         public void AddSpacing()
         {
-            var updateRightBracketSpace= _file.Replace(")", " )");
-            var updateLeftBracketSpace = updateRightBracketSpace.Replace("(", "( ");
-            _file = updateLeftBracketSpace;
+            Regex regex = new Regex(@"\(([^)]*)\)");
+            string formattedContent = regex.Replace(_file, "( $1 )");
+            _file = formattedContent;
+            File.WriteAllText("test.cs", formattedContent);
         }
         public void RemoveSpacing()
         {
-            var updateRightBracketSpace = _file.Replace(" )", ")");
-            var updateLeftBracketSpace = updateRightBracketSpace.Replace("( ", "(");
-            _file = updateLeftBracketSpace;
+           Regex regex = new Regex(@"\(\s*(\w+)\s*\)");
+            string formattedContent = Regex.Replace(_file, @"\(\s*(\w+)\s(\w+)\s*\)", "($1 $2)");
+            _file = formattedContent;
+            File.WriteAllText("test.cs", formattedContent);
         }
 
         public void AddIndentation(int indent)

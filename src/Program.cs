@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using SyntaxFormatter.Services;
+using regexPractice.Services;
 
 var fileContent = File.ReadAllText("test.cs");
 
@@ -27,26 +27,26 @@ Console.WriteLine();
 Console.WriteLine("Please enter the following parameters:");
 // Console.WriteLine("File name to be formatted:");
 // var fileName = Console.ReadLine();
-Console.Write("Indentation level required: ");
+// Console.Write("Indentation level required: ");
 
-var indententation = Int32.Parse(Console.ReadLine());
-Console.Write("Brace level required - Same Line or Own Line: ");
-var braceLine = Console.ReadLine();
+// var indententation = Int32.Parse(Console.ReadLine());
+// Console.Write("Brace level required - Same Line or Own Line: ");
+// var braceLine = Console.ReadLine();
 Console.Write("Parameter spacing required: ");
 var parameterSpacing = Console.ReadLine();
 
-if (braceLine.ToLower() == "same line")
-{
-    formattingServices.BracesSameLine();
-}
-else if (braceLine.ToLower() == "own line")
-{
-    formattingServices.BracesOwnLine();
-}
-else
-{
-    throw new Exception("\"Incorrect entry, Please try again\"");
-}
+// if (braceLine.ToLower() == "same line")
+// {
+//     formattingServices.BracesSameLine();
+// }
+// else if (braceLine.ToLower() == "own line")
+// {
+//     formattingServices.BracesOwnLine();
+// }
+// else
+// {
+//     throw new Exception("\"Incorrect entry, Please try again\"");
+// }
 
 if (parameterSpacing.ToLower() == "yes")
 {
@@ -54,6 +54,7 @@ if (parameterSpacing.ToLower() == "yes")
 }
 else if (parameterSpacing.ToLower() == "no")
 {
+    Console.WriteLine("No Selected");
     formattingServices.RemoveSpacing();
 }
 else
@@ -62,7 +63,7 @@ else
 }
 
 
-formattingServices.AddIndentation(indententation);
+// formattingServices.AddIndentation(indententation);
 
 Console.WriteLine(formattingServices.GetFile());
 

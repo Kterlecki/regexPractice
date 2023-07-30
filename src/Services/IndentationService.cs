@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SyntaxFormatter.Services
+namespace regexPractice.Services
 {
     public class IndentationService
     {
