@@ -1,10 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace regexPractice.Services
 {
@@ -12,7 +7,7 @@ namespace regexPractice.Services
     {
         private string _file;
 
-        public FormattingService(string file) 
+        public FormattingService(string file)
         {
             _file = file;
         }
@@ -29,7 +24,6 @@ namespace regexPractice.Services
         }
         public void RemoveSpacing()
         {
-           Regex regex = new Regex(@"\(\s*(\w+)\s*\)");
             string formattedContent = Regex.Replace(_file, @"\(\s*(\w+)\s(\w+)\s*\)", "($1 $2)");
             _file = formattedContent;
             File.WriteAllText("test.cs", formattedContent);
@@ -37,7 +31,7 @@ namespace regexPractice.Services
 
         public void AddIndentation(int indent)
         {
-            var emptySpace = " ";
+            const string emptySpace = " ";
             var stringBuilder = new StringBuilder();
 
             for (int i = 0; i < indent; i++)
@@ -52,29 +46,13 @@ namespace regexPractice.Services
 
         public void BracesSameLine()
         {
-            //var emptySpace = " ";
-            //var stringBuilder = new StringBuilder();
-            //var found = false;
-            //while (found == false)
-            //{
-            //    for (int i = 0; i < _file.Length; i++)
-            //    {
-            //        if (_file[i] == ')')
-            //        {
-            //            stringBuilder.Append(emptySpace);
-            //        }
-
-            //    }
-            //    stringBuilder.Append(emptySpace);
-            //}
-            //var result = stringBuilder.Append("result").ToString();
-            var updateBracesToSameLine = _file.Replace(" \r\n            {", "{");
+            var updateBracesToSameLine = Regex.Replace(_file, @"\s*\{\s*(\w+)\s(\w+);\s*\}", "{$1 $2}");
             _file = updateBracesToSameLine;
         }
 
         public void BracesOwnLine()
         {
-            var updateBracesToSameLine = _file.Replace(" \r\n            {", "{");
+            var updateBracesToSameLine = Regex.Replace(_file, @"\{(\w+)\s(\w+)\}", @"/n{$1 $2 /n}");
             _file = updateBracesToSameLine;
         }
     }

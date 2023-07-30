@@ -30,37 +30,37 @@ Console.WriteLine("Please enter the following parameters:");
 // Console.Write("Indentation level required: ");
 
 // var indententation = Int32.Parse(Console.ReadLine());
-// Console.Write("Brace level required - Same Line or Own Line: ");
-// var braceLine = Console.ReadLine();
-Console.Write("Parameter spacing required: ");
-var parameterSpacing = Console.ReadLine();
+Console.Write("Brace level required - Same Line or Own Line: ");
+var braceLine = Console.ReadLine();
+// Console.Write("Parameter spacing required: ");
+// var parameterSpacing = Console.ReadLine();
 
-// if (braceLine.ToLower() == "same line")
-// {
-//     formattingServices.BracesSameLine();
-// }
-// else if (braceLine.ToLower() == "own line")
-// {
-//     formattingServices.BracesOwnLine();
-// }
-// else
-// {
-//     throw new Exception("\"Incorrect entry, Please try again\"");
-// }
-
-if (parameterSpacing.ToLower() == "yes")
+if (braceLine.ToLower() == "same line")
 {
-    formattingServices.AddSpacing();
+    formattingServices.BracesSameLine();
 }
-else if (parameterSpacing.ToLower() == "no")
+else if (braceLine.ToLower() == "own line")
 {
-    Console.WriteLine("No Selected");
-    formattingServices.RemoveSpacing();
+    formattingServices.BracesOwnLine();
 }
 else
 {
     throw new Exception("\"Incorrect entry, Please try again\"");
 }
+
+// if (parameterSpacing.ToLower() == "yes")
+// {
+//     formattingServices.AddSpacing();
+// }
+// else if (parameterSpacing.ToLower() == "no")
+// {
+//     Console.WriteLine("No Selected");
+//     formattingServices.RemoveSpacing();
+// }
+// else
+// {
+//     throw new Exception("\"Incorrect entry, Please try again\"");
+// }
 
 
 // formattingServices.AddIndentation(indententation);
