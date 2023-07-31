@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using regexPractice.Services;
+using regexPractice.Validator;
 
 var fileContent = File.ReadAllText("test.cs");
 
@@ -7,6 +8,7 @@ var fileContent = File.ReadAllText("test.cs");
 var formattingServices = new FormattingService(fileContent);
 var bracingServices = new BracingService(fileContent);
 var indentationServices = new IndentationService(fileContent);
+var userInputValidator = new UserInputValidator();
 
 Console.WriteLine("***** File formatter *****");
 Console.WriteLine("**************************");
@@ -18,15 +20,28 @@ Console.WriteLine("Please enter the following parameters:");
 
 // var indententation = Int32.Parse(Console.ReadLine());
 Console.Write("Brace level required - Same Line or Own Line: ");
-var braceLine = Console.ReadLine();
+Console.Write("For Same Line Enter - 1 ");
+Console.Write("For Own Line Enter - 2 ");
+var braceLine = Console.ReadLine().ToLower();
+
+
+
 // Console.Write("Parameter spacing required: ");
 // var parameterSpacing = Console.ReadLine();
+try
+{
+    if(userInputValidator.ValidateBraceUserInput(braceLine));
+}
+catch (System.Exception)
+{
+    throw new Exception("Invalid entry for Brace input");
+}
 
-if (braceLine.ToLower() == "same line")
+if (braceLine == "1")
 {
     formattingServices.BracesSameLine();
 }
-else if (braceLine.ToLower() == "own line")
+else if (braceLine == "2")
 {
     formattingServices.BracesOwnLine();
 }
