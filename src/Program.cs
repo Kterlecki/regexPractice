@@ -3,23 +3,10 @@ using regexPractice.Services;
 
 var fileContent = File.ReadAllText("test.cs");
 
-//var count = 0;
-//for(int i = 0; i < fileContent.Length; i++)
-//{
-//    if (fileContent[i] == '\n')
-//    {
-//        count ++;
-//    }
-//}
-//Console.WriteLine(count);
-
-
 // Services
 var formattingServices = new FormattingService(fileContent);
 var bracingServices = new BracingService(fileContent);
 var indentationServices = new IndentationService(fileContent);
-
-
 
 Console.WriteLine("***** File formatter *****");
 Console.WriteLine("**************************");
@@ -45,7 +32,7 @@ else if (braceLine.ToLower() == "own line")
 }
 else
 {
-    throw new Exception("\"Incorrect entry, Please try again\"");
+    throw new Exception("Incorrect entry, Please try again");
 }
 
 // if (parameterSpacing.ToLower() == "yes")
