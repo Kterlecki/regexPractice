@@ -38,7 +38,7 @@ namespace regexPractice.Services
             {
                 stringBuilder.Append(emptySpace);
             }
-            var result = stringBuilder.Append("result").ToString();
+            var result = stringBuilder.Append("return").ToString();
 
             var updatedIndentation = _file.Replace("return", result);
             _file = updatedIndentation;

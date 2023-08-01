@@ -16,18 +16,15 @@ Console.WriteLine();
 Console.WriteLine("Please enter the following parameters:");
 // Console.WriteLine("File name to be formatted:");
 // var fileName = Console.ReadLine();
-// Console.Write("Indentation level required: ");
-
-// var indententation = Int32.Parse(Console.ReadLine());
-Console.Write("Brace level required - Same Line or Own Line: ");
-Console.Write("For Same Line Enter - 1 ");
-Console.Write("For Own Line Enter - 2 ");
+Console.Write("Indentation level required: ");
+var indententation = Int32.Parse(Console.ReadLine());
+Console.WriteLine("Brace level required");
+Console.WriteLine("For Same Line Enter - 1 ");
+Console.WriteLine("For Own Line Enter - 2 ");
+Console.Write("Enter brace level:");
 var braceLine = Console.ReadLine().ToLower();
-
-
-
-// Console.Write("Parameter spacing required: ");
-// var parameterSpacing = Console.ReadLine();
+Console.Write("Parameter spacing required: ");
+var parameterSpacing = Console.ReadLine();
 try
 {
     if(userInputValidator.ValidateBraceUserInput(braceLine));
@@ -50,22 +47,22 @@ else
     throw new Exception("Incorrect entry, Please try again");
 }
 
-// if (parameterSpacing.ToLower() == "yes")
-// {
-//     formattingServices.AddSpacing();
-// }
-// else if (parameterSpacing.ToLower() == "no")
-// {
-//     Console.WriteLine("No Selected");
-//     formattingServices.RemoveSpacing();
-// }
-// else
-// {
-//     throw new Exception("\"Incorrect entry, Please try again\"");
-// }
+if (parameterSpacing.ToLower() == "yes")
+{
+    formattingServices.AddSpacing();
+}
+else if (parameterSpacing.ToLower() == "no")
+{
+    Console.WriteLine("No Selected");
+    formattingServices.RemoveSpacing();
+}
+else
+{
+    throw new Exception("\"Incorrect entry, Please try again\"");
+}
 
 
-// formattingServices.AddIndentation(indententation);
+formattingServices.AddIndentation(indententation);
 
 Console.WriteLine(formattingServices.GetFile());
 

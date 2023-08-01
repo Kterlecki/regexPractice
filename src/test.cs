@@ -8,9 +8,9 @@ namespace regexPractice
 {
     public class test
     {
-        private bool isPositive(int param)
+        private bool isPositive( int param )
         {
-            if ( param > 0 ) 
+            if (  param > 0  ) 
             {
                 return true;
             }
