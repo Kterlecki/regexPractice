@@ -64,9 +64,8 @@ else
 
 formattingServices.AddIndentation(indententation);
 
-Console.WriteLine(formattingServices.GetFile());
-
 var finalFile = formattingServices.GetFile();
+Console.WriteLine(finalFile);
 
 using(var streamWriter = new StreamWriter("../FormattedOutputFile.cs")){
     streamWriter.Write(finalFile);
