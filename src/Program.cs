@@ -17,12 +17,12 @@ Console.WriteLine("Please enter the following parameters:");
 // Console.WriteLine("File name to be formatted:");
 // var fileName = Console.ReadLine();
 Console.Write("Indentation level required: ");
-var indententation = Int32.Parse(Console.ReadLine());
+var indententation = Int32.Parse(Console.ReadLine() ?? "0");
 Console.WriteLine("Brace level required");
 Console.WriteLine("For Same Line Enter - 1 ");
 Console.WriteLine("For Own Line Enter - 2 ");
 Console.Write("Enter brace level:");
-var braceLine = Console.ReadLine().ToLower();
+var braceLine = Console.ReadLine() ?? "";
 Console.Write("Parameter spacing required: ");
 var parameterSpacing = Console.ReadLine();
 try
@@ -47,20 +47,20 @@ else
     throw new Exception("Incorrect entry, Please try again");
 }
 
-if (parameterSpacing.ToLower() == "yes")
+if (string.Equals(parameterSpacing, "yes", StringComparison.OrdinalIgnoreCase))
 {
+    Console.WriteLine("Yes Selected");
     formattingServices.AddSpacing();
 }
-else if (parameterSpacing.ToLower() == "no")
+else if (string.Equals(parameterSpacing, "no", StringComparison.OrdinalIgnoreCase))
 {
     Console.WriteLine("No Selected");
     formattingServices.RemoveSpacing();
 }
 else
 {
-    throw new Exception("\"Incorrect entry, Please try again\"");
+    throw new Exception("\"Incorrect entry for Parameter Spacing, Please try again\"");
 }
-
 
 formattingServices.AddIndentation(indententation);
 
@@ -68,4 +68,7 @@ Console.WriteLine(formattingServices.GetFile());
 
 var finalFile = formattingServices.GetFile();
 
-var outputFile = File.Create("abc.cs");
+using(var streamWriter = new StreamWriter("../FormattedOutputFile.cs")){
+    streamWriter.Write(finalFile);
+}
+
