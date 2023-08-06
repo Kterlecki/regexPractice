@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace regexPractice
 {
-    public class testClass
+    public class TestClass
     {
-        private bool isPositive(int param)
+        private bool IsPositive(  int param  )
         {
-            if (   param > 0   ) 
-            {
-                return true;
-            }
-            else 
-            { 
-                return false; 
-            }
+            if (     param > 0     ){return true}
+            else{return false}
         }
     }
 }
